@@ -7,7 +7,7 @@
   "contributors": "Gabriel Viganotti <gabrielviganotti@gmail.com>",
   "license": "(MIT OR BSD-3-Clause)",
   "dependencies": {
-    "neon-cli": "^0.3.1"
+    "neon-cli": "https://github.com/joshuef/neon.git#WindowsFix2"
   },
   "scripts": {
     "install": "neon build --release"
