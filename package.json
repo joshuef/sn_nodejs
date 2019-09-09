@@ -6,10 +6,31 @@
   "author": "Josh Wilson <joshuef@gmail.com>",
   "contributors": "Gabriel Viganotti <gabrielviganotti@gmail.com>",
   "license": "(MIT OR BSD-3-Clause)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshuef/safe-nodejs.git"
+  },
+  "files": [
+    "native/index.node",
+    "lib"
+  ],
+  "binary": {
+    "module_name": "index",
+    "host": "https://github.com/your-username-here/your-repo-here/releases/download/",
+    "remote_path": "{version}",
+    "package_name": "{node_abi}-{platform}-{arch}.tar.gz",
+    "module_path": "./native",
+    "pkg_path": "."
+  },
+  "scripts": {
+    "install": "node-pre-gyp install --fallback-to-build=false || neon build --release",
+    "package": "node-pre-gyp package",
+    "upload-binary": "node-pre-gyp package && node-pre-gyp-github publish"
+  },
   "dependencies": {
     "neon-cli": "https://github.com/joshuef/neon.git#WindowsFix2"
   },
-  "scripts": {
-    "install": "neon build --release"
+  "devDependencies": {
+    "electron-rebuild": "1.8.6"
   }
 }

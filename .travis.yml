@@ -1,0 +1,74 @@
+os:
+  - osx
+  - linux
+
+language: node_js
+
+node_js:
+  - node
+  - 12
+  # - 11
+  # - 10
+
+cache:
+  yarn: true
+  cargo: true
+
+
+before_install:
+  # Install Rust and Cargo
+  - curl https://sh.rustup.rs -sSf > /tmp/rustup.sh
+  - sh /tmp/rustup.sh -y
+  - export PATH="$HOME/.cargo/bin:$PATH"
+  - source "$HOME/.cargo/env"
+  # Install NPM packages
+  - node -v
+  - yarn -v
+  - yarn install
+
+script:
+  # - npm test
+  # Publish when using '[publish binary]' keywords
+  # - COMMIT_MESSAGE=$(git log --format=%B --no-merges -n 1 | tr -d '\n')
+  # - if [[ ${COMMIT_MESSAGE} =~ "[publish binary]" ]]; then yarn upload-binary || exit 0; fi;
+  - npm rebuild  --target=6.0.7 # no hard target in .npmrc, so should be able to do for multiple electrons...
+
+
+
+before_deploy:
+
+- yarn package
+- cd native;
+- |
+  rm target;
+  cd ../.. ;
+  ls . | grep safe | while read RELEASE; do
+  echo "deploying ${RELEASE} to GitHub releases as tagged with ${TRAVIS_TAG}";
+  if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then ditto -c -k --sequesterRsrc --keepParent ${RELEASE} ${RELEASE}.zip;
+  fi
+  if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then zip -r -q ${RELEASE}.zip ${RELEASE};
+  fi
+  done
+# don't fail if nothing to do.
+- if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then zip -d *.zip *.DS_Store && zip -d *.zip  __MACOSX/\* || true;
+  fi
+- cd ..
+- ls
+- export RELEASE_PROD_ZIP="$(ls release/*-x64.zip)";
+- export RELEASE_DEV_ZIP="$(ls release/*-dev.zip)";
+- echo "deploying ${RELEASE_PROD_ZIP} to GitHub releases as tagged with ${TRAVIS_TAG}"
+- echo "deploying ${RELEASE_DEV_ZIP} to GitHub releases as tagged with ${TRAVIS_TAG}"
+- ls release
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key: $GITHUB_ACCESS_TOKEN
+  file:
+    - "${RELEASE_PROD_ZIP}"
+    - "${RELEASE_DEV_ZIP}"
+  draft: true
+  tag_name: $TRAVIS_TAG
+  # on:
+  #   tags: true
+  #   branch: dev
