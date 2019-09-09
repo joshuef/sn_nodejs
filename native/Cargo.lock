@@ -1340,23 +1340,23 @@ dependencies = [
 [[package]]
 name = "neon"
 version = "0.3.1"
-source = "git+https://github.com/kjvalencik/neon?branch=windows-electron#d6347977b14ca6b37de76a04a35e3a03783f4c35"
+source = "git+https://github.com/neon-bindings/neon?branch=windows-electron#4fab0445209ecd60cba2c8460f1fdc9a060fe971"
 dependencies = [
  "cslice 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "neon-build 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)",
- "neon-runtime 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)",
+ "neon-build 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)",
+ "neon-runtime 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)",
  "semver 0.9.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "neon-build"
 version = "0.3.1"
-source = "git+https://github.com/kjvalencik/neon?branch=windows-electron#d6347977b14ca6b37de76a04a35e3a03783f4c35"
+source = "git+https://github.com/neon-bindings/neon?branch=windows-electron#4fab0445209ecd60cba2c8460f1fdc9a060fe971"
 
 [[package]]
 name = "neon-runtime"
 version = "0.3.1"
-source = "git+https://github.com/kjvalencik/neon?branch=windows-electron#d6347977b14ca6b37de76a04a35e3a03783f4c35"
+source = "git+https://github.com/neon-bindings/neon?branch=windows-electron#4fab0445209ecd60cba2c8460f1fdc9a060fe971"
 dependencies = [
  "cc 1.0.45 (registry+https://github.com/rust-lang/crates.io-index)",
  "regex 1.3.1 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -1369,8 +1369,8 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
  "cast 0.2.2 (registry+https://github.com/rust-lang/crates.io-index)",
  "error-chain 0.12.1 (registry+https://github.com/rust-lang/crates.io-index)",
- "neon 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)",
- "neon-runtime 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)",
+ "neon 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)",
+ "neon-runtime 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)",
  "serde 1.0.100 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
@@ -2244,8 +2244,8 @@ dependencies = [
 name = "safe_nodejs"
 version = "0.1.0"
 dependencies = [
- "neon 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)",
- "neon-build 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)",
+ "neon 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)",
+ "neon-build 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)",
  "neon-serde 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "safe_cli 0.3.0 (git+https://github.com/maidsafe/safe-cli)",
 ]
@@ -3377,9 +3377,9 @@ dependencies = [
 "checksum msdos_time 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)" = "aad9dfe950c057b1bfe9c1f2aa51583a8468ef2a5baba2ebbe06d775efeb7729"
 "checksum multibase 0.6.0 (registry+https://github.com/rust-lang/crates.io-index)" = "b9c35dac080fd6e16a99924c8dfdef0af89d797dd851adab25feaffacf7850d6"
 "checksum native-tls 0.2.3 (registry+https://github.com/rust-lang/crates.io-index)" = "4b2df1a4c22fd44a62147fd8f13dd0f95c9d8ca7b2610299b2a2f9cf8964274e"
-"checksum neon 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)" = "<none>"
-"checksum neon-build 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)" = "<none>"
-"checksum neon-runtime 0.3.1 (git+https://github.com/kjvalencik/neon?branch=windows-electron)" = "<none>"
+"checksum neon 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)" = "<none>"
+"checksum neon-build 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)" = "<none>"
+"checksum neon-runtime 0.3.1 (git+https://github.com/neon-bindings/neon?branch=windows-electron)" = "<none>"
 "checksum neon-serde 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)" = "da9e108f87d76d1a7e11d1fa9c7554a0431b84d170104cb46d1546fb64d6bf63"
 "checksum net2 0.2.33 (registry+https://github.com/rust-lang/crates.io-index)" = "42550d9fb7b6684a6d404d9fa7250c2eb2646df731d1c06afc06dcee9e1bcf88"
 "checksum nodrop 0.1.13 (registry+https://github.com/rust-lang/crates.io-index)" = "2f9667ddcc6cc8a43afc9b7917599d7216aa09c463919ea32c59ed6cac8bc945"
