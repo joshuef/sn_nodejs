@@ -8,7 +8,9 @@ on:
 
 env:
   NODE_ENV: 'development'
-  REPO: "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY.git"
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  REPO: "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+  PERSONAL_GITHUB_TOKEN_REPO: "https://$GITHUB_ACTOR:${{secrets.PERSONAL_GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
 
 jobs:
   bump:
@@ -19,24 +21,22 @@ jobs:
         with:
           node-version: "12.x"
       - name: Yarn Install
-        run: yarn 
+        run: yarn global add standard-version
       - name: Setup git
         run: |
           git remote add github "$REPO"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: Bump Version
-        run: yarn standard-version -a 
+        run: standard-version -a 
       - name: Push changes to master
-        env:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-        # run: git push $REPO master
-        run: git remote set-url --push origin $REPO
+        # env:
+          # github_token: ${{ secrets.GITHUB_TOKEN }}
+        run: git push "$REPO" HEAD:master
+        # run: git remote set-url --push origin $REPO
 
       - name: Push tag
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-        run: git push $REPO master --tags
+        run: git push "$PERSONAL_GITHUB_TOKEN_REPO" HEAD:master --tags
         # run: git remote set-url --push origin $REPO
 
   
