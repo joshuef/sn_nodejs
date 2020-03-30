@@ -65,23 +65,58 @@ jobs:
           name: ${{ matrix.os }}-${{ matrix.node }}
           path: ./build/Release/index.node
 
+      - name: Remove build
+        if: matrix.os == 'windows-latest'
+        run: npx trash-cli build || true
+
+      - name: Remove build
+        if: matrix.os != 'windows-latest'
+        run: rm -rf build || true
+
       - name: Build Electron Latest
         if: matrix.node == '12'
+        run: yarn cross-env npm_config_target=${{ env.ELECTRON_LATEST }} npm_config_arch=x64 npm_config_disturl=https://electronjs.org/headers npm_config_runtime=electron neon build --release
+     
+      - name: Remove target
+        if: matrix.os == 'windows-latest'
+        run: npx trash-cli native/target
+
+      - name: Remove target
+        if: matrix.os != 'windows-latest'
+        run: rm -rf native/target || true
+        
+      - name: Package Electron Latest
+        if: matrix.node == '12'
         run: |
-            rm -rf build || true
-            yarn cross-env npm_config_target=${{ env.ELECTRON_LATEST }} npm_config_arch=x64 npm_config_disturl=https://electronjs.org/headers npm_config_runtime=electron neon build --release
-            rm -rf native/target
             yarn node-pre-gyp package --runtime=electron --target=${{ env.ELECTRON_LATEST }} --dist-url=https://electronjs.org/headers
             yarn publish-gh-draft || exit 0
       - run: ls build || true
       - run: ls build/Release || true
       - run: ls build/stage || true
+
+      - name: Remove build
+        if: matrix.os == 'windows-latest'
+        run: npx trash-cli build || true
+
+      - name: Remove build
+        if: matrix.os != 'windows-latest'
+        run: rm -rf build || true
       
       - name: Build Electron Latest -1 
         if: matrix.node == '12'          
+        run: yarn cross-env npm_config_target=${{ env.ELECTRON_ONE_BACK }} npm_config_arch=x64 npm_config_disturl=https://electronjs.org/headers npm_config_runtime=electron neon build --release
+      
+      - name: Remove target
+        if: matrix.os == 'windows-latest'
+        run: npx trash-cli native/target
+
+      - name: Remove target
+        if: matrix.os != 'windows-latest'
+        run: rm -rf native/target || true
+
+      - name: Package Electron Latest -1 
+        if: matrix.node == '12' 
         run: |
-            rm -rf build || true
-            yarn cross-env npm_config_target=${{ env.ELECTRON_ONE_BACK }} npm_config_arch=x64 npm_config_disturl=https://electronjs.org/headers npm_config_runtime=electron neon build --release
             rm -rf native/target
             yarn node-pre-gyp package --runtime=electron --target=${{ env.ELECTRON_ONE_BACK }} --dist-url=https://electronjs.org/headers
             yarn publish-gh-draft || exit 0
@@ -89,6 +124,7 @@ jobs:
       - run: ls build/Release || true
       - run: ls build/stage || true
 
+      # Now set up the release
       - name: Set tag as env
         if: matrix.os == 'ubuntu-latest'
         run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
