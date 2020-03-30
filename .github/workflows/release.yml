@@ -9,8 +9,8 @@ on:
 env:
   NODE_ENV: 'development'
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  REPO: "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
-  PERSONAL_GITHUB_TOKEN_REPO: "https://$GITHUB_ACTOR:${{secrets.PERSONAL_GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+  # REPO: "https://$GITHUB_ACTOR:${{secrets.GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
+  # PERSONAL_GITHUB_TOKEN_REPO: "https://$GITHUB_ACTOR:${{secrets.PERSONAL_GITHUB_TOKEN}}@github.com/$GITHUB_REPOSITORY.git"
 
 jobs:
   bump:
@@ -27,16 +27,19 @@ jobs:
           git remote add github "$REPO"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git remote set-url --push origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
       - name: Bump Version
         run: npx standard-version -a 
       - name: Push changes to master
         # env:
           # github_token: ${{ secrets.GITHUB_TOKEN }}
-        run: git push "$REPO" HEAD:master
+        run: git push master
         # run: git remote set-url --push origin $REPO
 
       - name: Push tag
-        run: git push "$PERSONAL_GITHUB_TOKEN_REPO" HEAD:master --tags
+        env:
+          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN}}
+        run: git push master --tags
         # run: git remote set-url --push origin $REPO
 
   
