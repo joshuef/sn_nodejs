@@ -20,15 +20,15 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: "12.x"
-      - name: Yarn Install
-        run: yarn global add standard-version
+      # - name: Yarn Install
+      #   run: yarn global add standard-version
       - name: Setup git
         run: |
           git remote add github "$REPO"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
       - name: Bump Version
-        run: standard-version -a 
+        run: npx standard-version -a 
       - name: Push changes to master
         # env:
           # github_token: ${{ secrets.GITHUB_TOKEN }}
