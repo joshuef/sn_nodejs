@@ -55,9 +55,9 @@ jobs:
         run: |
           yarn package
           yarn publish-gh-draft
-      - run: ls build
-      - run: ls build/Release || true
-      - run: ls build/stage || true
+      # - run: ls build
+      # - run: ls build/Release || true
+      # - run: ls build/stage || true
 
       - name: Archive Node Build
         uses: actions/upload-artifact@master
@@ -90,9 +90,6 @@ jobs:
         run: |
             yarn node-pre-gyp package --runtime=electron --target=${{ env.ELECTRON_LATEST }} --dist-url=https://electronjs.org/headers
             yarn publish-gh-draft || exit 0
-      - run: ls build || true
-      - run: ls build/Release || true
-      - run: ls build/stage || true
 
       - name: Remove build
         if: matrix.os == 'windows-latest'
@@ -120,9 +117,9 @@ jobs:
             rm -rf native/target
             yarn node-pre-gyp package --runtime=electron --target=${{ env.ELECTRON_ONE_BACK }} --dist-url=https://electronjs.org/headers
             yarn publish-gh-draft || exit 0
-      - run: ls build || true
-      - run: ls build/Release || true
-      - run: ls build/stage || true
+      # - run: ls build || true
+      # - run: ls build/Release || true
+      # - run: ls build/stage || true
 
       # Now set up the release
       - name: Set tag as env
