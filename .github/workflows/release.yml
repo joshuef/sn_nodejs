@@ -23,23 +23,23 @@ jobs:
       # - name: Yarn Install
       #   run: yarn global add standard-version
       - name: Setup git
+          # git remote set-url --push origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
         run: |
           git remote add github "$REPO"
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git remote set-url --push origin "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY"
       - name: Bump Version
         run: npx standard-version -a 
       - name: Push changes to master
         # env:
           # github_token: ${{ secrets.GITHUB_TOKEN }}
-        run: git push master HEAD:master
+        run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY" HEAD:master
         # run: git remote set-url --push origin $REPO
 
       - name: Push tag
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN}}
-        run: git push master HEAD:master --tags
+        run: git push "https://$GITHUB_ACTOR:$GITHUB_TOKEN@github.com/$GITHUB_REPOSITORY" HEAD:master --tags
         # run: git remote set-url --push origin $REPO
 
   
