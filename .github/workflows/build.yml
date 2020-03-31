@@ -133,14 +133,14 @@ jobs:
       - name: Generate Changelog
         shell: bash
         if: matrix.os == 'ubuntu-latest'
-        run: awk '/^## /{c++;p=1;next} p;{if(c==2){exit}}' CHANGELOG.md > ${{ github.workflow }}-CHANGELOG.txt
+        run: echo::set-env name=RELEASE_COPY::$(awk '/^## /{c++;p=1;next} p;{if(c==2){exit}}' CHANGELOG.md )
 
       - name: Release generation
         if: matrix.os == 'ubuntu-latest'
         uses: Xotl/cool-github-releases@ef50014218e6139d534f725f69aabe3728ea9b2e
         with:
           mode: update
-          body_mrkdwn: cat ${{ github.workflow }}-CHANGELOG.txt
+          body_mrkdwn: ${{ env.RELEASE_COPY }}
           isPrerelease: contains(github.ref, "alpha") || contains(github.ref, "beta")
           # assets: ${{ env.APPLICATION }}-${{ env.RELEASE_VERSION }}-mac-x64.dmg;${{ env.APPLICATION }}-${{ env.RELEASE_VERSION }}-linux-x64.AppImage|application/vnd.appimage;${{ env.APPLICATION }}-${{ env.RELEASE_VERSION }}-win-x64.exe;
           github_token: ${{ github.token }}
