@@ -1,7 +1,14 @@
 name: Tests
 
-on: [pull_request, tags]
-
+on:
+  pull_request:
+    # Sequence of patterns matched against refs/heads
+    branches:    
+      - *       
+    # Sequence of patterns matched against refs/tags
+    tags:        
+      - * 
+      
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   SAFE_CLI_VERSION: "0.11.0"
