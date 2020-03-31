@@ -2,6 +2,44 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.11.1](https://github.com/maidsafe/safe-nodejs/compare/v0.1.3...v0.11.1) (2020-03-31)
+
+
+### Features
+
+* **authd:** add bindings for authd install and uninstall APIs ([49b704c](https://github.com/maidsafe/safe-nodejs/commit/49b704cf5b4b3341d86e0eec3d4a511ce57bcb34))
+* **authd:** add nodejs bindings for SafeAuthdClient start/stop/restart APIs ([1dd4526](https://github.com/maidsafe/safe-nodejs/commit/1dd4526777a01922679c1c439738c0081e716355))
+* **authd:** implement binding for authd status API ([434e3c9](https://github.com/maidsafe/safe-nodejs/commit/434e3c9690b532502d8cf6febd9c89c70dffd656))
+* **authd:** implementation of nodejs bindings for SafeAuthdClient API ([4006c21](https://github.com/maidsafe/safe-nodejs/commit/4006c2139fd86864f475f2a5cb98c7e2c6a79705))
+* **authd:** implementation of the subscribe JS binding to receive auth reqs notifications from authd ([640f0a1](https://github.com/maidsafe/safe-nodejs/commit/640f0a1ce667f1c9fd3451a563f8d1c63d270663))
+* **electron:** Build for electron 7 ([acc8de8](https://github.com/maidsafe/safe-nodejs/commit/acc8de8a78da747badf3672027e2d6ca339cb8ed))
+* **Electron:** Update to 6.0.11 ([0ead232](https://github.com/maidsafe/safe-nodejs/commit/0ead232aef21fab006b866322cf691b108e9a82b))
+* **Electron:** Update to building 6.0.12 ([2d7c6c2](https://github.com/maidsafe/safe-nodejs/commit/2d7c6c263fb59b8e30f06a0b24f508a5f5b86ad8))
+* **files:** add binding for files add APIs, plus support Buffer and ArrayBuffer for args receiving file bytes ([70812bd](https://github.com/maidsafe/safe-nodejs/commit/70812bd83cafd5c720756ffc56336ff17c8a63d1))
+* **files:** implementation of FilesContainer and PublishedImmutableData API bindings ([e802a56](https://github.com/maidsafe/safe-nodejs/commit/e802a5679ca809ddd560fdde603d17119fa0014e))
+* **files:** minor changes to files api binding to upgrade safe-api ([b955c7a](https://github.com/maidsafe/safe-nodejs/commit/b955c7af75be10483d5cba1da74de5fd6a9460bd))
+* **inspect:** implementation of binding for inspect API ([8f8e1c0](https://github.com/maidsafe/safe-nodejs/commit/8f8e1c01a841d6a79a2a829120f697cd134a30a4))
+* **lib:** adapt fetch binding to support optional range arg, and adapt files_container_create binding to support creation of empty containers ([01ca8e9](https://github.com/maidsafe/safe-nodejs/commit/01ca8e95aa5bbf77774067c5d2e0e6d496fd89ed))
+* **lib:** add files_container_remove_path binding ([2f6d1cb](https://github.com/maidsafe/safe-nodejs/commit/2f6d1cb496f220895547113a8594007c4e06a9e8))
+* **nrs:** implementation of the NRS API bindings ([1270380](https://github.com/maidsafe/safe-nodejs/commit/127038099b13860770380cfcec710727aff038ae))
+* **packaging:** Enable packaging and downloading of prepackaged versions ([9a1cd02](https://github.com/maidsafe/safe-nodejs/commit/9a1cd029ea2ce975b7e85d087520a047377c9913))
+* **packaging:** Setup basic packaging ([89c9010](https://github.com/maidsafe/safe-nodejs/commit/89c901078a77030c05544adbd3f37833e60ea110))
+* **wallet:** implementation of Keys and Wallet bindings ([a542e8d](https://github.com/maidsafe/safe-nodejs/commit/a542e8d0acf4da300f0a701c735f7d464ba53b8f))
+* **win:** Windows build and packaging. ([9536311](https://github.com/maidsafe/safe-nodejs/commit/9536311a8562d15b1f9121ebcdca5e8699e721a1))
+* **Windows:** Use temp fork of neon to fix windows builds ([9748c40](https://github.com/maidsafe/safe-nodejs/commit/9748c4079e0acea7037c9cf472b179ea120b5fd1))
+* **xorurl:** implement JS binding for XorUrlEncoder ([ab40d5f](https://github.com/maidsafe/safe-nodejs/commit/ab40d5fd3291902c4be8d606894b8d8b1311d45e))
+
+
+### Bug Fixes
+
+* **api:** allow optional arguments to be passed as null ([a1f6640](https://github.com/maidsafe/safe-nodejs/commit/a1f66400c79e59337c208dd5eeb3c933adb8e4a4))
+* **ci:** Cleanup between various electron releases. ([62dcc3a](https://github.com/maidsafe/safe-nodejs/commit/62dcc3a40b107c96d96adcf7715bd1e3567f5b7a))
+* **ci:** remove native/target folder before creating electron package in CI ([08b5c96](https://github.com/maidsafe/safe-nodejs/commit/08b5c96008c422140eb6a65c8c28a7f45633abf7))
+* **ci:** Use travis-wait-enhanced in postinstall ([7c5ad5c](https://github.com/maidsafe/safe-nodejs/commit/7c5ad5c7e161881fb2835000bd7e6730f71f459e))
+* **Travis:** Use project specific env var for full build. ([fd81dad](https://github.com/maidsafe/safe-nodejs/commit/fd81dad36a823fe5b028f45056f50e704087ef3a))
+* postinstall script module ([d754cbc](https://github.com/maidsafe/safe-nodejs/commit/d754cbc18828adcdd39145f6f4f4ff71b41fd0f3))
+* **ci:** Update release process to improve module publishing ([884e335](https://github.com/maidsafe/safe-nodejs/commit/884e3351038ac8bbfe3c5e2513f0f30ad6a0ca9b))
+* windows rust host ([590938c](https://github.com/maidsafe/safe-nodejs/commit/590938c2796187b638816f8d802dac3982181d8f))
 
 ### [0.11.0](https://github.com/maidsafe/safe-nodejs/compare/v0.10.0...v0.11.1) (2020-03-30)
 
