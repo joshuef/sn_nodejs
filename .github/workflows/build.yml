@@ -114,7 +114,6 @@ jobs:
       - name: Package Electron Latest -1 
         if: matrix.node == '12' 
         run: |
-            rm -rf native/target
             yarn node-pre-gyp package --runtime=electron --target=${{ env.ELECTRON_ONE_BACK }} --dist-url=https://electronjs.org/headers
             yarn publish-gh-draft || exit 0
       # - run: ls build || true
